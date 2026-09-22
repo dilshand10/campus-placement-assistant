@@ -1,84 +1,112 @@
 🎓 Campus Placement Assistant
 
-AI-powered placement guidance using Microsoft Foundry + Foundry IQ
+AI-powered placement guidance assistant built as an AI-103 group project using Microsoft Foundry and Foundry IQ.
 
-AI-103 Group Project | Chitkara University
+Campus Placement Assistant is a web-based AI assistant designed to help students access placement-related guidance from a single conversational interface. The prototype focuses on common campus-placement questions such as available companies, roles, eligibility criteria, interview preparation, and role-specific preparation.
 
-</div>
+The system combines a React/Vite frontend, a FastAPI backend, a Microsoft Foundry Prompt Agent, and a Foundry IQ knowledge base containing project-specific placement information.
 
-👥 Team Members
+Data notice: The placement and company information used in this prototype is synthetic/demo data created for the project. It is not official university placement data, company hiring data, salary information, deadlines, or placement policy.
+
+📌 Project Information
+
+Item
+
+Details
+
+Project Title
+
+Campus Placement Assistant
+
+Project Type
+
+AI-103 Group Project / Working Prototype
+
+Primary AI Concepts
+
+Agent, RAG / Knowledge Retrieval
+
+Primary Azure Platform
+
+Microsoft Foundry
+
+Knowledge Layer
+
+Foundry IQ
+
+Frontend
+
+React + Vite
+
+Backend
+
+Python + FastAPI
+
+Repository
+
+dilshand10/campus-placement-assistant
+
+Data
+
+Synthetic / demo placement knowledge
+
+👥 Team Members & Contributions
 
 Member
 
-Contribution
+Primary Contribution
 
 Gursharan
 
-Frontend & User Experience — React/Vite interface, chat UI, quick-question buttons, Markdown/table rendering, and Clear History interaction.
+Frontend & User Experience — React/Vite interface, chat UI, quick questions, Markdown/table rendering, Clear History interaction
 
 Rudraksh
 
-Backend & API Integration — FastAPI backend, /chat and /reset endpoints, frontend-to-agent communication, and configuration handling.
+Backend & API Integration — FastAPI application, /chat and /reset endpoints, frontend-to-agent communication, configuration handling
 
 Muskan
 
-Microsoft Foundry Agent — Prompt Agent setup, placement-focused instructions, response behavior, grounding/scope rules, and conversation handling.
+Microsoft Foundry Agent — Prompt Agent setup, placement-focused instructions, response behavior, grounding and scope rules, conversational behavior
 
 Denish
 
-Foundry IQ / RAG — Knowledge base and source setup, six placement documents, embeddings/retrieval configuration, and RAG testing.
+Foundry IQ / RAG — knowledge-base preparation, placement documents, knowledge source setup, retrieval testing and grounding workflow
 
 Dilshan
 
-Testing, Azure Deployment & Documentation — End-to-end testing, Azure App Service deployment work, GitHub workflow, README, and project documentation.
+Testing, Azure Deployment & Documentation — end-to-end testing, Azure App Service deployment work, GitHub/README documentation and project coordination
 
-Contribution note: The contribution split documents the team's project ownership and presentation responsibilities.
+Contributions are organized by primary responsibility; the project was developed collaboratively as a team.
 
-📌 Project Overview
+🧩 Problem Statement
 
-Campus Placement Assistant is a web-based AI assistant designed to help students with campus-placement-related guidance in one conversational interface.
+Students often need placement information in several different forms:
 
-The prototype supports questions related to:
+Which companies or roles are available?
 
-🏢 Companies and placement roles
+Which branches are eligible?
 
-✅ Eligibility checks using branch, CGPA, and backlog information
+What minimum CGPA is required?
 
-💻 Technical and soft-skill preparation
+How many backlogs are allowed?
 
-🎯 Interview preparation
+How should a student prepare for interviews?
 
-🤖 Role-specific preparation such as Machine Learning and Software Development
+What skills are relevant for a particular placement role?
 
-💬 Multi-turn follow-up questions
+Finding and interpreting this information can be time-consuming when it is spread across different documents or sources.
 
-The project demonstrates an end-to-end AI application built around a Microsoft Foundry Prompt Agent and a Foundry IQ knowledge base containing project-specific placement information.
+The goal of this project is to provide a single conversational interface through which a student can ask placement-related questions and receive answers grounded in the project's placement knowledge base.
 
-⚠️ Important: The placement/company information in this prototype is synthetic demonstration data created for the project. It is not official university placement data, company hiring data, salary data, deadlines, or placement policy.
+💡 Solution Overview
 
-🎯 Problem Statement
+Campus Placement Assistant uses a conversational AI architecture to connect the student interface with a placement-focused AI agent and a project-specific knowledge base.
 
-Students often need placement information from multiple resources to understand:
+The assistant is instructed to stay within the placement domain and use the connected knowledge source as the primary basis for placement answers. It is also instructed not to invent companies, roles, eligibility rules, salaries, deadlines, or other unsupported placement facts.
 
-Which companies and roles are relevant to them
+For follow-up questions, the backend maintains a conversation so short responses such as CSE, 7.2, or 0 backlogs can be interpreted in the context of the previous question.
 
-Which branches are eligible
-
-Minimum CGPA requirements
-
-Backlog requirements
-
-What skills to prepare
-
-How to prepare for interviews and specific roles
-
-This project provides a single conversational interface where students can ask placement-related questions and receive responses grounded in the project's knowledge base.
-
-💡 Solution
-
-The application combines a modern web frontend, a Python backend, a Microsoft Foundry AI agent, and a project-specific retrieval layer.
-
-End-to-end architecture
+🏗️ System Architecture
 
 flowchart LR
     A[Student] --> B[React / Vite Frontend]
@@ -86,315 +114,247 @@ flowchart LR
     C --> D[Microsoft Foundry Prompt Agent]
     D --> E[Foundry IQ Knowledge Base]
     E --> F[Placement Knowledge Documents]
-    F --> E
-    E --> D
     D --> C
     C --> B
     B --> A
 
-Request flow
+Request Flow
 
-A student enters a placement question in the React frontend.
+A student enters a placement-related question in the web interface.
 
-The frontend sends the question to the FastAPI backend.
+React sends the request to the FastAPI backend.
 
-The backend sends the request to the Microsoft Foundry Prompt Agent.
+FastAPI forwards the question to the configured Microsoft Foundry agent.
 
-The agent uses the connected Foundry IQ knowledge base when placement information is required.
+The agent uses its placement-focused instructions and connected Foundry IQ knowledge source.
 
-Relevant information is retrieved from the project knowledge documents.
-
-The agent generates a placement-focused response.
+Relevant project knowledge is retrieved to ground the response.
 
 The response is returned through FastAPI to the frontend.
 
-🧠 AI-103 Concepts Demonstrated
+The frontend displays the answer in the chat interface.
 
-The official AI-103 guidelines list Campus Placement Assistant as a suggested project topic with Agent, RAG, and tools as the primary capabilities.
+🤖 AI-103 Concepts Demonstrated
 
-1. Agent
+1. AI Agent
 
-A Microsoft Foundry Prompt Agent acts as the central AI assistant.
-
-It is configured with project-specific instructions so it can:
-
-Stay focused on campus placement topics
-
-Use the connected knowledge base as the primary source for placement information
-
-Avoid inventing unsupported companies, roles, salaries, deadlines, or eligibility rules
-
-Ask for missing eligibility information when needed
-
-Handle short follow-up answers using conversation context
-
-2. RAG / Knowledge Retrieval
-
-The project uses a knowledge-retrieval workflow so the assistant can answer from the placement documents created for this prototype rather than relying only on general model knowledge.
-
-This is useful because placement guidance needs to remain grounded in the information supplied to the application.
-
-3. Application / API Integration
-
-FastAPI provides the application layer between the web interface and the Foundry agent. This makes the AI capability available to the web application through backend APIs.
-
-Important implementation note
-
-The current prototype does not implement a separate custom Foundry agent tool/function. The main implemented workflow is:
-
-Agent + RAG/knowledge retrieval + backend application integration
-
-☁️ Microsoft Azure / Foundry Components
-
-Component
-
-Project usage
-
-Why it is used
-
-Microsoft Foundry
-
-AI project and agent platform
-
-Provides the environment for the AI agent workflow.
-
-Foundry Prompt Agent
+The project uses a Microsoft Foundry Prompt Agent named:
 
 Campus-Placement-Assistant
 
-Provides the placement-focused conversational AI behavior.
+The agent provides the conversational behavior and placement-specific reasoning layer. Its instructions define the assistant's role, supported topics, response boundaries, grounding behavior, and handling of missing information.
+
+Why use an Agent?
+
+A placement assistant needs more than a simple text-generation response. The agent allows the project to define a consistent role and controlled behavior for placement questions.
+
+2. RAG / Knowledge Retrieval
+
+The project uses Foundry IQ to connect the agent with project-specific placement knowledge.
+
+Why use RAG?
+
+A general-purpose language model may not know the specific placement information prepared for this prototype. Retrieval allows the assistant to use the project's own documents as contextual knowledge when answering placement questions.
+
+This helps the prototype stay grounded in its supplied information instead of relying only on general model knowledge.
+
+3. Application Integration
+
+The project uses FastAPI as the server-side integration layer between the frontend and the Microsoft Foundry agent.
+
+The AI-103 project guideline lists Campus Placement Assistant under the capabilities of Agent, RAG, and tools. In this prototype, the main demonstrated AI capabilities are the Agent and RAG/knowledge workflow, while FastAPI provides the application integration layer. A separate custom Foundry agent tool is not exposed as a standalone component in the current prototype.
+
+☁️ Microsoft Azure / Foundry Components Used
+
+Microsoft Foundry
+
+Used as the Azure environment for creating and managing the project and AI agent.
+
+Foundry Prompt Agent
+
+Agent name: Campus-Placement-Assistant
+
+Used for:
+
+placement-focused conversational responses
+
+scope control
+
+grounding instructions
+
+contextual follow-up handling
+
+responsible response behavior
 
 Foundry IQ
 
-campus-placement-kb
+Knowledge Base: campus-placement-kb
+Knowledge Source: campus-placement-files
 
-Provides the project knowledge/retrieval layer.
+Used to provide the agent with project-specific placement knowledge.
 
-Knowledge Source
+Embedding Model
 
-campus-placement-files
-
-Connects the placement documents to the knowledge base.
-
-Embedding model
+The knowledge workflow uses:
 
 text-embedding-3-small
 
-Supports semantic representation/retrieval of knowledge content.
+for embedding the knowledge content used by the retrieval workflow.
 
 Azure App Service
 
-campus-placement-api-2026
+The FastAPI backend is configured for deployment as a web application on Azure App Service.
 
-Hosts the FastAPI backend in Azure.
+📚 Knowledge Base
 
-Note: The AI-103 guidelines mention Azure AI Search as a possible component for this project type. Our current prototype uses Foundry IQ as the implemented knowledge/retrieval layer rather than a separately configured Azure AI Search resource.
+The prototype uses six Markdown documents as its placement knowledge source:
 
-📚 Knowledge Base / RAG Data
+01_placement_overview.md
+02_sample_company_data.md
+03_eligibility_rules.md
+04_interview_preparation.md
+05_role_guide.md
+06_assistant_behavior.md
 
-The knowledge source contains six Markdown documents prepared for this prototype:
+Knowledge Coverage
 
-File
+Document
 
 Purpose
 
 01_placement_overview.md
 
-Placement overview and general guidance
+General placement guidance and scope
 
 02_sample_company_data.md
 
-Synthetic company and role information
+Synthetic company, role and eligibility examples
 
 03_eligibility_rules.md
 
-Branch, CGPA, and backlog rules
+CGPA, branch and backlog-related demo rules
 
 04_interview_preparation.md
 
-Interview preparation guidance
+Interview and preparation guidance
 
 05_role_guide.md
 
-Role-specific preparation guidance
+Role-specific preparation and skill guidance
 
 06_assistant_behavior.md
 
-Assistant scope, behavior, and grounding rules
+Scope, response and safety behavior
 
-Example synthetic placement data
+🔎 Example Placement Scenarios
 
-Company
+The assistant can be demonstrated with queries such as:
 
-Role
-
-Eligible Branches
-
-Minimum CGPA
-
-Max Backlogs
-
-TechNova
-
-Software Developer
-
-CSE, IT
-
-7.0
-
-0
-
-DataSphere
-
-Data Analyst
-
-CSE, IT, AI
-
-7.5
-
-0
-
-AIWorks
-
-Machine Learning Engineer
-
-CSE, AI
-
-7.5
-
-0
-
-CloudCore
-
-Cloud Engineer
-
-CSE, IT
-
-7.0
-
-1
-
-WebStack
-
-Full Stack Developer
-
-CSE, IT
-
-6.5
-
-0
-
-SecureNet
-
-Cybersecurity Analyst
-
-CSE, IT
-
-7.0
-
-0
-
-FinTechLab
-
-Backend Developer
-
-CSE, IT
-
-7.5
-
-0
-
-These entries are demo/synthetic data and should not be treated as real recruitment information.
-
-✨ Key Features
-
-🏢 Company Search
-
-Example:
+Company Discovery
 
 What companies are available for CSE students?
 
-✅ Eligibility Checking
+Eligibility Checking
 
-The assistant can gather missing information across multiple messages and use the available rules.
+Check my eligibility.
+CGPA: 7.2
+Backlogs: 0
+Branch: CSE
 
-Example:
-
-Student: Check my eligibility.
-Assistant: Please provide your CGPA, branch and backlog information.
-Student: 7.2
-Student: 0 backlogs
-Student: CSE
-
-🎯 Interview Preparation
+Interview Preparation
 
 How should I prepare for a software developer interview?
 
-🤖 Role-Specific Preparation
+Role-Specific Preparation
 
 How should I prepare for a machine learning role?
 
-🧹 Clear History
+Conversational Follow-Up
 
-The web application includes a Clear History action that calls the backend reset endpoint and starts a fresh conversation state.
+User: Check my eligibility.
+Assistant: Please provide your branch, CGPA and backlog information.
+User: CSE
+User: 7.2
+User: 0 backlogs
 
-🛡️ Placement-Focused Scope
+The backend maintains conversation context so the follow-up information can be interpreted as part of the same interaction.
 
-The assistant is designed for campus-placement guidance. For unrelated topics, it should explain that the requested information is outside its provided placement knowledge and redirect the user toward placement-related assistance.
+🖥️ Frontend
 
-🧰 Technology Stack
+The frontend is built with React and Vite.
 
-Frontend
+Main UI Features
 
-React
+conversational chat interface
 
-Vite
+user and assistant message separation
 
-JavaScript / JSX
+quick-question buttons
 
-CSS
+Markdown response rendering
 
-remark-gfm for GitHub-Flavored Markdown rendering
+table rendering for structured placement information
 
-Backend
+Clear History control
 
-Python
+backend API integration
 
-FastAPI
+placement-focused interface wording
 
-Uvicorn
+⚙️ Backend
 
-Pydantic
+The backend is built with Python and FastAPI.
 
-python-dotenv
+Main Responsibilities
 
-azure-ai-projects
+expose the /chat API
 
-azure-identity
+send user requests to the Foundry agent
 
-AI / Cloud
+maintain conversation context
 
-Microsoft Foundry
+expose /reset to clear conversation state
 
-Microsoft Foundry Prompt Agent
+provide a bridge between the frontend and Azure AI services
 
-Foundry IQ
+read configuration from environment variables
 
-text-embedding-3-small
+Main API Endpoints
 
-Azure App Service
+Endpoint
 
-Development / Source Control
+Method
 
-Git
+Purpose
 
-GitHub
+/
 
-GitHub Actions deployment workflow
+GET
+
+Basic backend/service response
+
+/chat
+
+POST
+
+Send a user message to the AI agent
+
+/reset
+
+POST
+
+Clear the current conversation
+
+/docs
+
+GET
+
+FastAPI interactive API documentation
 
 📁 Project Structure
 
-AZURE/
+campus-placement-assistant/
+│
 ├── BACKEND/
 │   ├── main.py
 │   ├── test_agent.py
@@ -407,6 +367,7 @@ AZURE/
 │       ├── 04_interview_preparation.md
 │       ├── 05_role_guide.md
 │       └── 06_assistant_behavior.md
+│
 ├── FRONTEND/
 │   ├── src/
 │   │   ├── App.jsx
@@ -414,19 +375,58 @@ AZURE/
 │   │   ├── index.css
 │   │   └── main.jsx
 │   └── package.json
-├── models/
-├── services/
+│
+├── .env
 ├── .gitignore
+├── requirements.txt
 ├── README.md
-├── package.json
-├── package-lock.json
-└── requirements.txt
+└── package.json
 
-Local .env files and Python virtual environments must remain outside the repository through .gitignore.
+The exact local tree may evolve as the project is maintained. The structure above represents the main application components used by the prototype.
 
-⚙️ Setup & Installation
+🛠️ Technology Stack
+
+Layer
+
+Technology
+
+Frontend
+
+React, Vite
+
+Backend
+
+Python, FastAPI
+
+AI Platform
+
+Microsoft Foundry
+
+AI Agent
+
+Microsoft Foundry Prompt Agent
+
+Knowledge / RAG
+
+Foundry IQ
+
+Embeddings
+
+text-embedding-3-small
+
+Cloud Hosting
+
+Azure App Service
+
+Version Control
+
+Git + GitHub
+
+🚀 Local Setup
 
 Prerequisites
+
+Make sure the following are available:
 
 Python 3.x
 
@@ -434,435 +434,372 @@ Node.js and npm
 
 Git
 
-Access to the Microsoft Foundry project and configured agent
+An Azure account with access to the required Foundry project/AI services
 
-1. Clone the repository
+1. Clone the Repository
 
 git clone https://github.com/dilshand10/campus-placement-assistant.git
 cd campus-placement-assistant
 
-2. Create the Python virtual environment
+2. Create and Activate the Python Virtual Environment
 
 python3 -m venv .venv
 source .venv/bin/activate
 
-3. Install backend dependencies
+On Windows, use the equivalent activation command for PowerShell or Command Prompt.
+
+3. Install Backend Dependencies
 
 pip install -r requirements.txt
 
-4. Configure environment variables
+The backend requirements include FastAPI, Uvicorn, Pydantic, dotenv support, Azure AI Projects, and Azure Identity dependencies required by the application.
 
-Create a local .env file in the project root:
+4. Configure Environment Variables
+
+Create a local .env file and provide the required configuration values:
 
 FOUNDRY_PROJECT_ENDPOINT=<your-foundry-project-endpoint>
 FOUNDRY_AGENT_NAME=Campus-Placement-Assistant
 
-Do not commit .env or any secret values to GitHub.
+Do not commit real secrets, tokens, connection strings or other credentials to GitHub.
 
-5. Run the backend
+5. Start the Backend
 
 From the project root:
 
+source .venv/bin/activate
 uvicorn BACKEND.main:app --reload
 
-Backend:
+The local backend is normally available at:
 
 http://127.0.0.1:8000
 
-API documentation:
+Interactive API documentation:
 
 http://127.0.0.1:8000/docs
 
-6. Run the frontend
+6. Start the Frontend
+
+Open another terminal:
 
 cd FRONTEND
 npm install
 npm run dev
 
-The Vite development server normally runs on:
+Open the Vite URL shown in the terminal, usually similar to:
 
 http://localhost:5173
 
-For a deployed frontend, configure the backend URL with:
+For a deployed frontend, configure VITE_API_URL to point to the deployed backend instead of the local FastAPI URL.
 
-VITE_API_URL=<your-deployed-backend-url>
+🔐 Configuration & Security
 
-🔐 Security & Environment Variables
+The project uses environment variables for configuration rather than storing credentials in source code.
 
-The project keeps Azure/Foundry configuration outside the source code wherever possible.
-
-Never commit
-
-API keys
+The repository should never contain:
 
 passwords
 
-tokens
+API keys
+
+access tokens
 
 connection strings
 
-private credentials
+other private credentials
 
-Use instead
-
-Environment variables
-
-.env files excluded from Git
-
-Azure App Service application settings for deployed configuration
-
-The AI-103 guidelines explicitly require credentials to be kept out of the Git repository.
+The .gitignore file is used to exclude local environment files and generated/development artifacts from Git tracking.
 
 🧪 Testing & Results
 
-The prototype was tested using representative placement scenarios.
+The prototype should be tested across the main intended user flows.
 
-Test
+Test Scenario
 
-Expected / Observed behavior
+Expected Result
 
 Company search
 
-Returns relevant synthetic company/role information from the knowledge base.
+Returns relevant company/role information from the supplied placement knowledge
 
-Eligibility input
+Eligibility with complete inputs
 
-Uses supplied branch, CGPA, and backlog information with the available rules.
+Uses the available demo eligibility rules to provide a grounded response
 
-Multi-turn follow-up
+Eligibility with missing inputs
 
-Short answers such as CSE can continue the previous eligibility conversation.
+Requests only the missing information needed to continue
+
+Follow-up response such as CSE
+
+Interprets the short response using conversation context
 
 Interview preparation
 
-Returns placement-focused interview guidance.
+Returns placement-focused interview guidance
 
-ML preparation
+Role-specific preparation
 
-Returns role-specific preparation guidance.
+Returns guidance related to the selected role
 
-Unrelated question
+Unrelated topic
 
-Redirects because the assistant is scoped to placement guidance.
+Explains that the assistant is focused on campus placement guidance and redirects the user
 
 Clear History
 
-Resets the current conversation state.
+Resets the current conversation state
 
-Markdown/table output
+Backend API
 
-Structured responses are rendered in the frontend.
+Returns a successful response when the service and Foundry configuration are available
 
-Recommended demonstration queries
+Testing Focus
 
-What companies are available for CSE students?
+Testing should cover:
 
-Check my eligibility.
+Functional correctness — the requested feature works.
 
-7.2
+Grounding — placement answers are based on the supplied project knowledge.
 
-0 backlogs
+Conversation context — follow-up inputs work correctly.
 
-CSE
+Reliability — backend/frontend communication functions as expected.
 
-How should I prepare for a software developer interview?
+Scope control — unrelated questions are not answered as though they were placement facts.
 
-How should I prepare for a machine learning role?
+🧭 Responsible AI
 
-🛡️ Responsible AI & Grounding
+The assistant is intentionally constrained to a defined placement use case.
 
-The project considers reliability, transparency, security, privacy, fairness, and human oversight in the context of a placement-guidance prototype.
+Grounded Responses
 
-Grounding
+The knowledge base is used as the primary source for placement-specific information.
 
-The agent is instructed to use the connected placement knowledge base as the primary source for placement information.
-
-Avoiding unsupported claims
+No Unsupported Placement Claims
 
 The assistant should not invent:
 
-Companies
+companies
 
-Roles
+roles
 
-Salaries
+salaries
 
-Deadlines
+deadlines
 
-Openings
+eligibility requirements
 
-Eligibility criteria
+university policies
 
-University/company policies
+hiring decisions
 
-When information is not available in the supplied placement data, the assistant should state that the information is unavailable rather than presenting unsupported details as facts.
+Transparency
 
-Human verification
+The project clearly identifies its company and placement information as synthetic/demo data.
 
-This prototype is a guidance and demonstration system. Students should verify real placement information with official university or company sources before making real-world decisions.
+Scope Control
+
+For unrelated requests, the assistant redirects the conversation back to campus-placement topics rather than presenting unsupported information as project knowledge.
+
+Human Oversight
+
+The assistant is a guidance prototype. Students should verify real placement information with the appropriate official university/company source before making decisions.
 
 ⚠️ Known Limitations
 
-The knowledge base contains synthetic/demo placement information rather than live recruitment data.
+Synthetic knowledge — the company and placement information is demo data and is not live university/company data.
 
-Responses are limited by the information available in the connected knowledge base.
+Limited knowledge coverage — the quality of answers depends on the documents supplied to the knowledge base.
 
-The prototype does not provide live job openings, live deadlines, or real-time recruitment updates.
+No live job/placement feed — the current prototype does not connect to a live placement-management system.
 
-A separate custom Foundry agent tool/function is not implemented in the current version.
+No student authentication — the prototype is designed as a demonstration application rather than a complete student identity platform.
 
-Production features such as authentication, role-based access, analytics, and a live placement database are outside the current prototype scope.
+Prototype-scale deployment — production-level monitoring, authentication, database integration and large-scale operational controls are outside the current scope.
 
-Cloud deployment and shared links should be tested again immediately before final submission.
+🔮 Future Improvements
 
-🚀 Future Improvements
+Possible next steps include:
 
-Connect an authorized live/official placement data source
+connect to an approved/live placement information source
 
-Add student authentication and personalized profiles
+add authenticated student profiles
 
-Add company/role filters
+integrate a structured placement database
 
-Add placement deadline and notification features
+expand company and role coverage
 
-Add resume analysis and personalized preparation plans
+provide richer eligibility explanations
 
-Add interview simulation/coaching
+add application/deadline reminders
 
-Add analytics for frequently asked questions
+add analytics for frequently asked placement questions
 
-Add additional custom tools where they provide a clear project benefit
+introduce additional tools or integrations where appropriate
 
-Show clearer source references in the user interface
+add stronger production monitoring and access controls
 
-📚 Third-Party Resources & Acknowledgements
+📦 Third-Party Resources & Acknowledgements
 
-This project uses third-party software, SDKs, services, and development resources including:
+The project uses open-source libraries and Microsoft/Azure SDKs as part of its implementation. Significant third-party resources should be acknowledged as required by the AI-103 project guidelines.
 
-React and Vite ecosystem packages
+Examples used by the project include:
 
-FastAPI, Uvicorn, Pydantic, and Python packages
+React
 
-Microsoft Azure / Foundry SDKs and services
+Vite
 
-remark-gfm for GitHub-Flavored Markdown rendering
+FastAPI
 
-GitHub and GitHub Actions
+Pydantic
 
-AI-assisted development tools used during implementation
+Uvicorn
 
-Significant third-party resources are acknowledged as required for the academic project submission.
+python-dotenv
 
-🎥 AI-103 5-Minute Video Structure
+azure-ai-projects
 
-The project video should follow the structure specified in the AI-103 guidelines:
+azure-identity
+
+remark-gfm
+
+Microsoft Foundry services and documentation
+
+The project team is responsible for ensuring that any additional external datasets, code, libraries, assets or resources added later are also acknowledged appropriately.
+
+🎥 AI-103 Demonstration & Video Plan
+
+The AI-103 guideline recommends a 5-minute structure containing:
 
 Section
 
-Time
-
-Content
+Target Time
 
 Introduction
 
 30 sec
 
-Team, project title, use case
-
 Problem Statement
 
 30 sec
-
-Problem being addressed
 
 AI-Driven Solution
 
 1 min
 
-Solution approach and AI technologies
-
 Technical Demonstration
 
 2 min
-
-Working prototype
 
 Impact & Future Scope
 
 1 min
 
-Value, limitations, scalability, next steps
+For the live demonstration, the team can show:
 
-The video should be uploaded to YouTube and the accessible link submitted through the LMS project submission section.
+The Campus Placement Assistant interface.
 
-🎬 Suggested Live Demo Flow
+Company search for a branch such as CSE.
 
-1. Introduce the application
+Eligibility checking with CGPA/backlog/branch information.
 
-Show the Campus Placement Assistant interface.
+Interview or role-specific preparation.
 
-2. Demonstrate company search
+The architecture: React → FastAPI → Foundry Agent → Foundry IQ → knowledge.
 
-What companies are available for CSE students?
+The GitHub repository and project documentation.
 
-3. Demonstrate eligibility
+✅ AI-103 Submission Checklist
 
-Check my eligibility.
-7.2
-0 backlogs
-CSE
+Before submission, verify that the project has:
 
-4. Demonstrate interview preparation
+Working prototype / PoC ready for demonstration
 
-How should I prepare for a software developer interview?
+Correct five-member team information
 
-5. Demonstrate role preparation
+Accessible GitHub repository
 
-How should I prepare for a machine learning role?
+Complete README.md
 
-6. Explain the architecture
+Testing and results documented
 
-React / Vite
-      ↓
-FastAPI
-      ↓
-Microsoft Foundry Agent
-      ↓
-Foundry IQ
-      ↓
-Placement Knowledge
+Known limitations and future improvements documented
 
-7. Explain limitations and future scope
+Third-party resources acknowledged
 
-Mention that the current placement information is synthetic/demo data and explain future expansion plans.
+No passwords, API keys, tokens or credentials exposed
 
-✅ Final Submission Checklist
+5-minute video recorded and uploaded to YouTube
 
-Working prototype / PoC is ready for demonstration
+YouTube sharing permissions tested
 
-All 5 team member names are correct
+GitHub link tested
 
-GitHub repository is accessible
+Submission completed through the LMS before the deadline
 
-README and technical documentation are complete
+🎤 Viva Preparation
 
-Testing and results are documented
+Every team member should be able to answer these four questions clearly:
 
-Third-party resources are acknowledged
+What problem did we solve?
 
-No passwords, API keys, tokens, or credentials are exposed
+We created a conversational assistant for campus-placement information and preparation guidance.
 
-5-minute video is finished and uploaded to YouTube
+What did we build?
 
-YouTube sharing permissions are tested
+A React/Vite web application connected through FastAPI to a Microsoft Foundry placement agent grounded by Foundry IQ knowledge.
 
-GitHub, Azure, and video links are tested
+How did we apply AI-103 learning?
 
-LMS Project Submission is completed before the deadline
+We applied an AI agent and RAG/knowledge retrieval workflow using Microsoft Foundry and Foundry IQ, integrated into a working application.
 
-📊 Project-to-Guideline Mapping
+Can we demonstrate that it works?
 
-AI-103 requirement
+Yes. The team should demonstrate the frontend, backend/API flow, agent interaction, knowledge-grounded responses, conversational follow-ups, and reset functionality.
 
-Where this project addresses it
+📖 Project Scope
 
-Working prototype / PoC
+In Scope
 
-React frontend + FastAPI + Foundry Agent + Foundry IQ workflow
+campus placement guidance
 
-Problem & solution
+company and role discovery from supplied demo data
 
-Problem Statement + Solution sections
+eligibility guidance based on supplied rules
 
-Architecture / data flow
+interview preparation
 
-Architecture diagram + Request Flow
+role-specific preparation
 
-AI services / models
+conversational follow-up questions
 
-Microsoft Foundry, Foundry IQ, text-embedding-3-small
+grounded knowledge retrieval
 
-Setup instructions
+Out of Scope
 
-Setup & Installation section
+official university placement decisions
 
-Testing & results
+guaranteed eligibility or selection outcomes
 
-Testing & Results section
+live recruitment decisions
 
-Limitations
+salary guarantees
 
-Known Limitations section
+unsupported company or vacancy claims
 
-Future improvements
+general-purpose unrestricted AI assistance
 
-Future Improvements section
+📜 License / Academic Use
 
-Team members
+This repository is developed as an academic project for the AI-103 Group Project at Chitkara University. The repository contains prototype code and synthetic/demo placement information for educational demonstration purposes.
 
-Team Members section
+⭐ Summary
 
-Third-party acknowledgement
+Campus Placement Assistant demonstrates how a focused AI agent can be integrated into a web application and grounded with project-specific knowledge using Microsoft Foundry and Foundry IQ.
 
-Third-Party Resources section
+The project combines:
 
-5-minute video
+Agent + RAG / Knowledge Retrieval + Application Integration
 
-AI-103 5-Minute Video Structure
-
-📌 Project Status
-
-Area
-
-Status
-
-Project prototype
-
-Built
-
-React/Vite frontend
-
-Implemented
-
-FastAPI backend
-
-Implemented
-
-Microsoft Foundry Agent
-
-Configured
-
-Foundry IQ knowledge base
-
-Configured
-
-Placement knowledge documents
-
-Prepared
-
-GitHub repository
-
-Available
-
-README documentation
-
-Completed
-
-Azure backend deployment
-
-Configured / requires final live verification
-
-5-minute YouTube video
-
-To be recorded and submitted
-
-Final LMS submission
-
-Pending
-
-<div align="center">
-
-Campus Placement Assistant
-AI-103 Academic Group Project
-
-</div>
+to provide a practical, explainable campus-placement assistance workflow suitable for an AI-103 working prototype.
