@@ -1,6 +1,7 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
+from services.agent_services import ask_agent, reset_conversation
 
 from services.agent_services import ask_agent
 
@@ -51,3 +52,8 @@ def chat(request: ChatRequest):
     return {
         "answer": answer
     }
+
+@app.post("/reset")
+def reset():
+    reset_conversation()
+    return {"message": "Conversation history cleared"}

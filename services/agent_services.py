@@ -20,13 +20,29 @@ openai_client = project_client.get_openai_client(
     agent_name=AGENT_NAME
 )
 
-conversation = openai_client.conversations.create()
+conversation = None
 
+def get_conversation():
+    global conversation
+
+    if conversation is None:
+        conversation = openai_client.conversations.create()
+
+    return conversation
+
+
+def reset_conversation():
+    global conversation
+    conversation = openai_client.conversations.create()
 
 def ask_agent(question: str) -> str:
+    current_conversation = get_conversation()
+
     response = openai_client.responses.create(
-        conversation=conversation.id,
-        input=question
+        conversation=current_conversation.id,
+        input=question,
     )
 
-    return response.output_text
+    return response.output_text  
+
+    
