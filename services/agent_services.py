@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from azure.ai.projects import AIProjectClient
 from openai import BadRequestError
 
@@ -10,7 +10,16 @@ load_dotenv()
 PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 AGENT_NAME = os.environ["FOUNDRY_AGENT_NAME"]
 
-credential = DefaultAzureCredential()
+if os.getenv("WEBSITE_HOSTNAME"):
+    # Running in Azure App Service – use Managed Identity
+    client_id = os.getenv("AZURE_CLIENT_ID")
+    if not client_id:
+        raise RuntimeError("AZURE_CLIENT_ID environment variable is required for Managed Identity authentication in Azure.")
+    credential = ManagedIdentityCredential(client_id=client_id)
+else:
+    # Local development – use DefaultAzureCredential (or any available local credential)
+    credential = DefaultAzureCredential()
+
 
 project_client = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
