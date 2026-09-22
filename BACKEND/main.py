@@ -56,7 +56,7 @@ def root():
     return {
         "message": "Campus Placement Assistant API is running",
         "service": "Microsoft Foundry + Foundry IQ RAG",
-        "auth": "Microsoft Entra External ID"
+        "auth": "Microsoft Entra ID"
     }
 
 
