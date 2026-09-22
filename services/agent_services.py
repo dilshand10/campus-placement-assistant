@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from openai import BadRequestError
 
 load_dotenv()
 
@@ -20,29 +21,35 @@ openai_client = project_client.get_openai_client(
     agent_name=AGENT_NAME
 )
 
-conversation = None
-
-def get_conversation():
-    global conversation
-
-    if conversation is None:
-        conversation = openai_client.conversations.create()
-
-    return conversation
+# Per-user conversation storage to isolate chat histories
+user_conversations = {}
 
 
-def reset_conversation():
-    global conversation
-    conversation = openai_client.conversations.create()
+def get_conversation(user_id: str = "default"):
+    if user_id not in user_conversations or user_conversations[user_id] is None:
+        user_conversations[user_id] = openai_client.conversations.create()
 
-def ask_agent(question: str) -> str:
-    current_conversation = get_conversation()
+    return user_conversations[user_id]
 
-    response = openai_client.responses.create(
-        conversation=current_conversation.id,
-        input=question,
-    )
 
-    return response.output_text  
+def reset_conversation(user_id: str = "default"):
+    user_conversations[user_id] = openai_client.conversations.create()
+    return user_conversations[user_id]
 
-    
+
+def ask_agent(question: str, user_id: str = "default") -> str:
+    current_conversation = get_conversation(user_id)
+
+    try:
+        response = openai_client.responses.create(
+            conversation=current_conversation.id,
+            input=question,
+        )
+
+        return response.output_text
+
+    except BadRequestError as e:
+        if "content_filter" in str(e):
+            return "Sorry, this request was blocked by Azure OpenAI's content safety filter."
+
+        raise
