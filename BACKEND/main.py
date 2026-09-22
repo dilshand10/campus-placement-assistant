@@ -16,32 +16,24 @@ load_dotenv()
 
 app = FastAPI(
     title="Campus Placement Assistant",
-    description="AI-powered campus placement assistant API with Microsoft Entra External ID authentication and Foundry RAG",
+    description="AI-powered campus placement assistant API with Microsoft Entra ID authentication and Foundry RAG",
     version="1.0.0",
 )
 
 # Configure CORS origins
-allowed_origins_env = os.environ.get("CORS_ORIGINS", "")
-if allowed_origins_env:
-    allowed_origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
+frontend_origin = os.getenv("FRONTEND_ORIGIN")
+if frontend_origin:
+    allowed_origins = [origin.strip() for origin in frontend_origin.split(",") if origin.strip()]
 else:
-    allowed_origins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:4173",
-        "http://127.0.0.1:4173",
-    ]
+    allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"]
 )
-
 
 class ChatRequest(BaseModel):
     question: str
