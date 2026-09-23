@@ -19,19 +19,32 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies and build frontend
+        env:
+          VITE_API_URL: https://campus-placement-api-2026-eac4gag8amhdddba.centralindia-01.azurewebsites.net
+          VITE_ENTRA_CLIENT_ID: ce7d0818-e254-43c7-89c7-85a8a794801f
+          VITE_ENTRA_TENANT_ID: bc9cd8e7-1801-4d9b-9c0d-c39cb60a7a19
+          VITE_ENTRA_AUTHORITY: https://login.microsoftonline.com/bc9cd8e7-1801-4d9b-9c0d-c39cb60a7a19
+          VITE_ENTRA_REDIRECT_URI: https://calm-stone-010abd900.5.azurestaticapps.net/
+          VITE_ENTRA_SCOPES: openid,profile,email
+        run: |
+          cd FRONTEND
+          npm ci
+          npm run build
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_STONE_010ABD900 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./FRONTEND" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          app_location: "./FRONTEND"
+          output_location: "dist"
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
