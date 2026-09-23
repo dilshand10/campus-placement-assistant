@@ -1,5 +1,5 @@
 /**
- * Microsoft Entra External ID MSAL Configuration
+ * Microsoft Entra ID MSAL Configuration
  * Configures PublicClientApplication for single-page application (SPA) authentication with PKCE.
  */
 

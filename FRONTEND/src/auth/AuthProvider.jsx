@@ -56,7 +56,7 @@ VITE_ENTRA_SCOPES=openid,profile,email`;
         <div className="modal-header">
           <div className="modal-title-group">
             <span className="modal-icon">🔐</span>
-            <h3>Microsoft Entra External ID Setup</h3>
+            <h3>Microsoft Entra ID Setup</h3>
           </div>
           <button type="button" className="btn-close-modal" onClick={onClose}>
             ✕
@@ -65,7 +65,7 @@ VITE_ENTRA_SCOPES=openid,profile,email`;
 
         <div className="modal-body">
           <p className="modal-notice">
-            To enable real authentication, your Microsoft Entra External ID application credentials need to be added to <code>FRONTEND/.env</code>.
+            To enable real authentication, your Microsoft Entra ID application credentials need to be added to <code>FRONTEND/.env</code>.
           </p>
 
           <div className="steps-guide">

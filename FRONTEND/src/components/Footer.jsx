@@ -13,7 +13,7 @@ export function Footer() {
           <div className="footer-stack-badges">
             <span className="badge">Microsoft Foundry</span>
             <span className="badge">Foundry IQ RAG</span>
-            <span className="badge">Microsoft Entra External ID</span>
+            <span className="badge">Microsoft Entra ID</span>
             <span className="badge">FastAPI</span>
             <span className="badge">React + Vite</span>
           </div>

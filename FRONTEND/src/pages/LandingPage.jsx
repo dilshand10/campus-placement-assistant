@@ -194,7 +194,7 @@ export function LandingPage({ onOpenChat }) {
             <div className="step-icon">📝</div>
             <h3 className="step-title">Create Account</h3>
             <p className="step-desc">
-              Register securely through Microsoft Entra External ID with your student email.
+              Register securely through Microsoft Entra ID with your student email.
             </p>
           </div>
 
@@ -276,7 +276,7 @@ export function LandingPage({ onOpenChat }) {
 
           <div className="tech-card">
             <div className="tech-badge-icon">🛡️</div>
-            <h4>Microsoft Entra External ID</h4>
+            <h4>Microsoft Entra ID</h4>
             <p>Customer and student identity provider with PKCE token validation on client and server.</p>
           </div>
         </div>
@@ -286,7 +286,7 @@ export function LandingPage({ onOpenChat }) {
       <section className="cta-banner-section">
         <div className="cta-card">
           <h2>Ready to Explore Your Placement Path?</h2>
-          <p>Sign in with Microsoft Entra External ID and get instant guidance on eligible companies and interview prep.</p>
+          <p>Sign in with Microsoft Entra ID and get instant guidance on eligible companies and interview prep.</p>
           <button
             type="button"
             className="btn-cta-large"
