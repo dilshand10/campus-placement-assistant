@@ -9,15 +9,12 @@ conversational interface for placement preparation. It combines a
 Microsoft Foundry Prompt Agent with Foundry IQ retrieval-augmented
 generation (RAG), a FastAPI backend, and a React/Vite frontend.
 
-------------------------------------------------------------------------
 
 ## 🔗 Project Links
-
   -------------------------------------------------------------------------------------------------------------------------------------------
   Resource                            Link
   ----------------------------------- -------------------------------------------------------------------------------------------------------
-  🌐 Live Prototype                   **Campus Placement Assistant**
-
+  - **Live Prototype:** [Campus Placement Assistant](https://calm-stone-010abd900.5.azurestaticapps.net/)
   📦 GitHub Repository                **[dilshand10/campus-placement-assistant](https://github.com/dilshand10/campus-placement-assistant)**
 
   🎥 5-Minute YouTube Video           *Add the final YouTube video link after upload*
