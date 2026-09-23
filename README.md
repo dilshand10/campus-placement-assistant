@@ -8,7 +8,7 @@ Live Prototype: Campus Placement Assistant
 
 GitHub Repository: dilshand10/campus-placement-assistant
 
-5-Minute YouTube Video: Add the final YouTube video URL here after upload.
+5-Minute YouTube Video: Add the final YouTube video link after upload.
 
 1️⃣ Project Title
 
@@ -16,29 +16,19 @@ Campus Placement Assistant
 
 2️⃣ Team Members
 
-Member
+| Member | Role |
 
-Role
+|---|---|
 
-Gursharan
+| Gursharan | Landing Page & Frontend UI |
 
-Landing Page & Frontend UI
+| Rudraksh | FastAPI Backend & Authentication Integration |
 
-Rudraksh
+| Muskan | Microsoft Foundry Agent |
 
-FastAPI Backend & Authentication Integration
+| Denish | Foundry IQ / RAG |
 
-Muskan
-
-Microsoft Foundry Agent
-
-Denish
-
-Foundry IQ / RAG
-
-Dilshan
-
-Testing, Azure Deployment & Documentation
+| Dilshan | Testing, Azure Deployment & Documentation |
 
 3️⃣ Team Contributions
 
@@ -172,29 +162,19 @@ Enterprise Authentication – Authorization Code Flow with PKCE via MSAL React.
 
 9️⃣ Technology Stack
 
-Layer
+| Layer | Technologies |
 
-Technologies
+|---|---|
 
-Frontend
+| Frontend | React 19, Vite, @azure/msal-browser, @azure/msal-react, React Router (BrowserRouter), Tailored CSS |
 
-React 19, Vite, @azure/msal-browser, @azure/msal-react, React Router (BrowserRouter), Tailored CSS
+| Backend | Python 3.10+, FastAPI, Uvicorn, PyJWT, azure-identity |
 
-Backend
+| AI Platform | Microsoft Foundry (Prompt Agent & IQ) |
 
-Python 3.10+, FastAPI, Uvicorn, PyJWT, azure-identity
+| Identity Provider | Microsoft Entra ID (single-tenant, organization-only) |
 
-AI Platform
-
-Microsoft Foundry (Prompt Agent & IQ)
-
-Identity Provider
-
-Microsoft Entra ID (single-tenant, organization-only)
-
-Hosting
-
-Azure App Service (Python) + Azure Static Web Apps (SPA fallback)
+| Hosting | Azure App Service (Python) + Azure Static Web Apps (SPA fallback) |
 
 🔟 Microsoft Foundry
 
@@ -303,15 +283,15 @@ npm run dev – visit http://localhost:5173.
 Backend (.env)
 
 
-FOUNDRY_PROJECT_ENDPOINT=\<your-foundry-endpoint>
+FOUNDRY_PROJECT_ENDPOINT=<your-foundry-endpoint>
 
 FOUNDRY_AGENT_NAME=Campus-Placement-Assistant
 
-ENTRA_CLIENT_ID=\<client-id>
+ENTRA_CLIENT_ID=<client-id>
 
-ENTRA_AUTHORITY=https://login.microsoftonline.com/\<tenant-id>/v2.0
+ENTRA_AUTHORITY=https://login.microsoftonline.com/<tenant-id>/v2.0
 
-ENTRA_TENANT_ID=\<tenant-id>
+ENTRA_TENANT_ID=<tenant-id>
 
 FRONTEND_ORIGIN=http://localhost:5173,http://127.0.0.1:5173
 
@@ -321,9 +301,9 @@ Frontend (FRONTEND/.env)
 
 VITE_API_URL=http://127.0.0.1:8000
 
-VITE_ENTRA_CLIENT_ID=\<client-id>
+VITE_ENTRA_CLIENT_ID=<client-id>
 
-VITE_ENTRA_AUTHORITY=https://login.microsoftonline.com/\<tenant-id>/v2.0
+VITE_ENTRA_AUTHORITY=https://login.microsoftonline.com/<tenant-id>/v2.0
 
 VITE_ENTRA_REDIRECT_URI=http://localhost:5173
 
@@ -340,67 +320,21 @@ Deploy the FRONTEND/dist folder to Azure Static Web Apps with a staticwebapp.con
 
 1️⃣8️⃣ Testing and Results
 
-Scenario
+| Scenario | Expected Outcome | Status |
 
-Expected Outcome
+|---|---|---|
 
-Status
+| Landing Page loads (/) | Hero, metrics, and Get Started button visible | ✅ |
 
-Landing Page loads (/)
+| Unauthenticated access to /chat | Redirected to login via ProtectedRoute | ✅ |
 
-Hero, metrics, and Get Started button visible
+| Entra sign‑in (redirect flow) | User authenticated, token stored, UI updates | ✅ |
 
-✅
+| Chat query (eligibility) | RAG‑grounded answer from knowledge base | ✅ |
 
-Unauthenticated access to /chat
+| Clear History button | Conversation reset via /reset | ✅ |
 
-Redirected to login via ProtectedRoute
-
-✅
-
-Entra sign‑in (redirect flow)
-
-User authenticated, token stored, UI updates
-
-✅
-
-Chat query (eligibility)
-
-RAG‑grounded answer from knowledge base
-
-✅
-
-Clear History button
-
-Conversation reset via /reset
-
-✅
-
-Sign‑out
-
-MSAL cache cleared, back to Landing Page
-
-✅
-
-🔗 Final Submission Links
-
-Deliverable
-
-Link
-
-Working Prototype
-
-Open Live Prototype
-
-GitHub Repository
-
-Open GitHub Repository
-
-YouTube Video
-
-Add final YouTube URL after upload
-
-Replace the YouTube placeholder with the final accessible video URL before submission.
+| Sign‑out | MSAL cache cleared, back to Landing Page | ✅ |
 
 1️⃣9️⃣ Responsible AI / Security
 
