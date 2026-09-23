@@ -202,7 +202,7 @@ export function ChatPage() {
           <div className="chat-toolbar-title">
             <span className="chat-toolbar-icon">💬</span>
             <div>
-              <span className="chat-toolbar-name">Campus Placement Assistant</span>
+              <span className="chat-toolbar-name">Placement Chat</span>
               <span className="chat-toolbar-subtitle">AI-103 Placement Guidance • Microsoft Foundry</span>
             </div>
           </div>
