@@ -39,7 +39,7 @@ Students struggle to find consolidated, trustworthy information for campus place
 A unified, conversational AI assistant that:
 - Authenticates each student via **Microsoft Entra ID** (single‑tenant, organization‑only).
 - Provides RAG‑grounded answers from a curated knowledge base.
-- Is protected behind a secure back‑end (FastAPI) that isolates conversations per user.
+- Is protected behind a secure back‑end (FastAPI) that stores conversation state per user in-memory (not persisted).
 - Delivers a modern SPA experience built with React and Vite.
 
 ## 6️⃣ Key Features
@@ -63,13 +63,13 @@ flowchart TD
     end
 
     subgraph Identity ["Identity & Access Management"]
-        Entra["🛡️ Microsoft Entra ID (CIAM)"]
+        Entra["🛡️ Microsoft Entra ID (single-tenant, organization-only)"]
     end
 
     subgraph Backend ["Server Layer (Azure App Service)"]
         FastAPI["⚡ FastAPI Application"]
         TokenVal["🔑 Entra JWT Token Validator"]
-        ConvMgr["🗂️ Per‑User Conversation Manager"]
+        ConvMgr["🗂️ Conversation Manager (in‑memory)"]
     end
 
     subgraph Foundry ["Azure AI & Knowledge Layer"]
@@ -86,7 +86,7 @@ flowchart TD
     ChatUI -->|POST /chat with Bearer Token| FastAPI
     FastAPI --> TokenVal
     TokenVal -->|Extract Verified OID/Sub| ConvMgr
-    ConvMgr -->|User‑Isolated Conversation| Agent
+    ConvMgr -->|Conversation| Agent
     Agent <-->|Vector Retrieval RAG| FoundryIQ
     FoundryIQ <--> Embeddings
     FoundryIQ <--> Docs
@@ -107,13 +107,13 @@ flowchart TD
 | Frontend | React 19, Vite, `@azure/msal-browser`, `@azure/msal-react`, React Router (`BrowserRouter`), Tailored CSS |
 | Backend | Python 3.10+, FastAPI, Uvicorn, PyJWT, `azure-identity` |
 | AI Platform | Microsoft Foundry (Prompt Agent & IQ) |
-| Identity Provider | Microsoft Entra ID (CIAM) |
+| Identity Provider | Microsoft Entra ID (single-tenant, organization-only) |
 | Hosting | Azure App Service (Python) + Azure Static Web Apps (SPA fallback) |
 
 ## 🔟 Microsoft Foundry
 
 - **Prompt Agent**: `Campus-Placement-Assistant` – constrained to placement‑related queries, no unrelated content.
-- **RAG Grounding**: All answers are sourced from the six markdown documents in the knowledge base.
+- **RAG Grounding**: Placement responses are grounded using the six markdown knowledge documents through Foundry IQ retrieval.
 
 ## 1️⃣1️⃣ Foundry IQ / RAG
 
@@ -183,15 +183,15 @@ campus-placement-assistant/
 FOUNDRY_PROJECT_ENDPOINT=<your-foundry-endpoint>
 FOUNDRY_AGENT_NAME=Campus-Placement-Assistant
 ENTRA_CLIENT_ID=<client-id>
-ENTRA_AUTHORITY=https://<tenant>.ciamlogin.com/<tenant-id>/v2.0
+ENTRA_AUTHORITY=https://login.microsoftonline.com/<tenant-id>/v2.0
 ENTRA_TENANT_ID=<tenant-id>
-CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+FRONTEND_ORIGIN=http://localhost:5173,http://127.0.0.1:5173
 ```
 **Frontend (`FRONTEND/.env`)**
 ```
 VITE_API_URL=http://127.0.0.1:8000
 VITE_ENTRA_CLIENT_ID=<client-id>
-VITE_ENTRA_AUTHORITY=https://<tenant>.ciamlogin.com/<tenant-id>/v2.0
+VITE_ENTRA_AUTHORITY=https://login.microsoftonline.com/<tenant-id>/v2.0
 VITE_ENTRA_REDIRECT_URI=http://localhost:5173
 VITE_ENTRA_SCOPES=openid,profile,email
 ```
