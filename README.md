@@ -14,11 +14,11 @@ generation (RAG), a FastAPI backend, and a React/Vite frontend.
   -------------------------------------------------------------------------------------------------------------------------------------------
   Resource                            Link
   ----------------------------------- -------------------------------------------------------------------------------------------------------
-Live Prototype                    **[Campus Placement Assistant](https://calm-stone-010abd900.5.azurestaticapps.net/)**
+Live Prototype -                    **[Campus Placement Assistant](https://calm-stone-010abd900.5.azurestaticapps.net/)**
     
-  📦 GitHub Repository                **[dilshand10/campus-placement-assistant](https://github.com/dilshand10/campus-placement-assistant)**
+  📦 GitHub Repository -             **[dilshand10/campus-placement-assistant](https://github.com/dilshand10/campus-placement-assistant)**
 
-  🎥 5-Minute YouTube Video           *Add the final YouTube video link after upload*
+  🎥 5-Minute YouTube Video -        *Add the final YouTube video link after upload*
   -------------------------------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
