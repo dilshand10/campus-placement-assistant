@@ -18,7 +18,7 @@ Live Prototype -                    **[Campus Placement Assistant](https://calm-
     
   📦 GitHub Repository -             **[dilshand10/campus-placement-assistant](https://github.com/dilshand10/campus-placement-assistant)**
 
-  🎥 5-Minute YouTube Video - [Watch Demo Video](https://youtu.be/kaf3IdR5LMo?si=hdwHvORyfHm6oJnN)
+  🎥 **5-Minute YouTube Video – [Watch Demo Video](https://youtu.be/kaf3IdR5LMo?si=hdwHvORyfHm6oJnN)**
   -------------------------------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
